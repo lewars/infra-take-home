@@ -1,5 +1,5 @@
 # String Reverse API
-Reverse is an infrastructure take-home exam. 
+String Reverse API is an infrastructure take-home exam. 
 
 This project is a simple example of an API endpoint that reverses a string when you call it.
 
