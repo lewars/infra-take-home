@@ -1,20 +1,20 @@
 # String Reverse API
-This is an infrastructure take home exam.
+Reverse is an infrastructure take-home exam. 
 
 This project is a simple example of an API endpoint that reverses a string when you call it.
 
 
 ## Setup
 
-1. Install [`Docker`][docker_setup], if you havn't done so.
-
+1. Install [`Docker`][docker_setup] if you haven't done so.
+a
 1. Install Google's Google Cloud Compute (GCP) [SDK tooling][google_sdk_setup].
 
 1. Given this implementation uses GCP as its cloud provider, you will
    need to create a [GCP project][gcp_console]. **Note:** Please make
    sure to install the **cloud-build-local** component.
 
-1. Once you have created a GCP project and it is properly setup,
+1. Once you have created a GCP project and it is properly set up,
    authenticate your work environment to your project.
 
     ```
