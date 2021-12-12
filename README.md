@@ -45,6 +45,18 @@ To build, test, and deploy to your GCP project, execute the following:
 gcloud builds submit --config cloudbuild.yaml --substitutions=TAG_NAME=${TAG_NAME}
 ```
 
+## Manually Test
+
+To manually test after deployment:
+1. Visit the GCP console. Browse the Cloud Run section, find the reverse repository, and click on its link.
+Copy the URL presented at the top of the page.
+1. Use curl to access the API endpoint:
+
+```
+curl -X POST -d 'foo' -H 'Content-Type: application/json'  https://reverse-v6elomfbxa-ue.a.run.app/reverse
+{"payload":"OOF"}
+```
+
 [docker_setup]: https://docs.docker.com/engine/install/
 [google_sdk_setup]: https://cloud.google.com/sdk/docs/install
 [google_account_creation]: https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
