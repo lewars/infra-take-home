@@ -48,7 +48,7 @@ gcloud builds submit --config cloudbuild.yaml --substitutions=TAG_NAME=${TAG_NAM
 ## Manually Test
 
 To manually test after deployment:
-1. Visit the GCP console. Browse the Cloud Run section, find the reverse repository, and click on its link.
+1. Visit the GCP console. Browse the [Cloud Run section][gcp_cloud_run], find the reverse repository, and click on its link.
 Copy the URL presented at the top of the page.
 1. Use curl to access the API endpoint:
 
@@ -61,3 +61,4 @@ curl -X POST -d 'foo' -H 'Content-Type: application/json'  https://reverse-v6elo
 [google_sdk_setup]: https://cloud.google.com/sdk/docs/install
 [google_account_creation]: https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
 [gcp_console]: https://console.cloud.google.com/
+[gcp_cloud_run]: https://console.cloud.google.com/run
