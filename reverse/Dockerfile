@@ -1,7 +1,7 @@
 FROM fedora:34
 
 RUN dnf -yv update && \
-    dnf -yv install gunicorn pip
+    dnf -yv install pip
 
 ENV APP_HOME /app
 WORKDIR $APP_HOME

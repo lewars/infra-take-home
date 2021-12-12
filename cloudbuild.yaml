@@ -1,0 +1,68 @@
+steps:
+  # Setup Python dependencies
+  - name: python:3.9
+    id: python-dependencies-setup
+    entrypoint: pip
+    args:
+      - install
+      - -r
+      - requirements.txt
+      - --user
+    dir: reverse
+  # Build reverse service
+  - name: gcr.io/cloud-builders/docker
+    id: build-reverse-service
+    args:
+      - build
+      - -t
+      - us-east1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/reverse:$TAG_NAME
+      - .
+    dir: reverse
+  # Unit test reverse service
+  - name: python:3.9
+    id: unit-test-reverse
+    entrypoint: python
+    args:
+      - -m
+      - pytest
+      - --verbose
+      - --color=yes
+      - reverse/tests/unit_test.py
+  # Integration test reverse service
+  - name: python:3.9
+    id: integration-test-reverse
+    entrypoint: python
+    args:
+      - -m
+      - pytest
+      - --verbose
+      - --color=yes
+      - reverse/tests/integration_test.py
+  # Push Cloud Run Container to Google Artifact Registry
+  - name: gcr.io/cloud-builders/docker
+    id: push-reverse
+    args:
+      - push
+      - us-east1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/reverse:$TAG_NAME
+    dir: reverse
+  # Deploy to Cloud Run
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    id: deploy-reverse
+    args:
+      - gcloud
+      - run
+      - deploy
+      - reverse
+      - --image=us-east1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/reverse:$TAG_NAME
+      - --region
+      - us-east1
+      - --platform
+      - managed
+      - --allow-unauthenticated
+    dir: reverse
+images:
+  - us-east1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/reverse:$TAG_NAME
+options:
+#  logging: CLOUD_LOGGING_ONLY
+substitutions:
+  _REPO_NAME: reverse
