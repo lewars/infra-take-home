@@ -52,7 +52,7 @@ To manually test after deployment:
 Copy the URL presented at the top of the page.
 1. Use curl to access the API endpoint:
 
-E.g. of my completed api endpoint,
+Example of my completed api endpoint,
 ```
 curl -X POST -d 'foo' -H 'Content-Type: application/json'  https://reverse-v6elomfbxa-ue.a.run.app/reverse
 {"payload":"OOF"}
